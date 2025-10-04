@@ -2,16 +2,14 @@ import { useState } from 'react';
 import { useExpenses } from '@/hooks/useExpenses';
 import { BottomNav } from '@/components/BottomNav';
 import { AddExpenseDialog } from '@/components/AddExpenseDialog';
-import { Dashboard } from '@/pages/Dashboard';
+import { Categories } from '@/pages/Categories';
 
-const Index = () => {
+const CategoriesPage = () => {
   const [isAddExpenseOpen, setIsAddExpenseOpen] = useState(false);
   const {
     expenses,
     categories,
     addExpense,
-    updateExpense,
-    deleteExpense,
     addCategory,
     updateCategory,
     deleteCategory,
@@ -19,7 +17,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Dashboard expenses={expenses} categories={categories} />
+      <Categories
+        categories={categories}
+        onAddCategory={addCategory}
+        onUpdateCategory={updateCategory}
+        onDeleteCategory={deleteCategory}
+      />
       <BottomNav onAddExpense={() => setIsAddExpenseOpen(true)} />
       <AddExpenseDialog
         open={isAddExpenseOpen}
@@ -31,4 +34,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default CategoriesPage;
